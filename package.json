@@ -1,0 +1,30 @@
+{
+  "name": "bloc-jams-angular",
+  "version": "1.0.0",
+  "description": "My bloc jams app using Angular",
+  "main": "Gruntfile.js",
+  "dependencies": {
+    "grunt": "^0.4.5"
+  },
+  "devDependencies": {
+    "grunt": "~0.4",
+    "grunt-contrib-clean": "~0.4",
+    "grunt-contrib-copy": "~0.4",
+    "grunt-contrib-watch": "~0.4",
+    "hapi": "^13.3.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/builditdan/bloc-jams-angular.git"
+  },
+  "author": "Dan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/builditdan/bloc-jams-angular/issues"
+  },
+  "homepage": "https://github.com/builditdan/bloc-jams-angular#readme"
+}
