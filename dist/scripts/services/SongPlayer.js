@@ -27,14 +27,23 @@
     }
   
 /**
+* @function private stopSong
+* @desc Stops the current song and clears the current song that was playing
+* @param {Object} song
+*/
+    var stopSong = function() {
+      currentBuzzObject.stop();
+      SongPlayer.currentSong.playing = null; 
+    }    
+    
+/**
 * @function private setSong
 * @desc Stops currently playing song and loads new audio file as currentBuzzObject
 * @param {Object} song
 */
     var setSong = function(song) {
       if (currentBuzzObject) {
-        currentBuzzObject.stop();
-        SongPlayer.currentSong.playing = null;
+        stopSong(song)
       }
       currentBuzzObject = new buzz.sound(song.audioUrl, {
           formats: ['mp3'],
@@ -93,21 +102,38 @@
     
 /**
 * @function public previous
-* @desc Decrements current song index to the previous song
+* @desc Decrements current song index to the previous song, stops at first song
 * @returns {numeric}
 */
-  SongPlayer.previous = function() {
-     var currentSongIndex = getSongIndex(SongPlayer.currentSong);
-     currentSongIndex--;
-     if (currentSongIndex < 0) {
-       currentBuzzObject.stop();
-       SongPlayer.currentSong.playing = null;
-     } else {
-       var song = currentAlbum.songs[currentSongIndex];
-       setSong(song);
-       playSong(song);
-     }
- };
+    SongPlayer.previous = function() {
+       var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+       currentSongIndex--;
+      if (currentSongIndex < 0) {
+         stopSong();
+       } else {
+         var song = currentAlbum.songs[currentSongIndex];
+         setSong(song);
+         playSong(song);
+       }
+   };
+    
+    /**
+* @function public next
+* @desc Increments current song index to the next song, stops at last song
+* @returns {numeric}
+*/
+    SongPlayer.next = function() {
+       var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+       currentSongIndex++;
+       songCount = Fixtures.getNoSongs()
+       if (currentSongIndex > songCount - 1 ) {
+         stopSong();
+       } else {
+         var song = currentAlbum.songs[currentSongIndex];
+         setSong(song);
+         playSong(song);
+       }
+   };
   
         
    return SongPlayer;
@@ -116,6 +142,5 @@
   angular
     .module('blocJams')
     .factory('SongPlayer', SongPlayer);
-  
   
 })();

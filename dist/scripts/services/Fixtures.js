@@ -5,7 +5,7 @@
     
     var albumPicasso = {
          title: 'Dan\'s Mix Tape',
-         artist: 'Various',
+         artist: 'Dan Schutte',
          label: 'Cubism',
          year: '1881',
          albumArtUrl: 'assets/images/album_covers/01.png',
@@ -35,6 +35,11 @@
     
      Fixtures.getAlbum = function() {
        return albumPicasso;
+     };
+    
+     Fixtures.getNoSongs = function() {
+       songCount = parseInt(albumPicasso.songs.length);
+       return songCount;
      };
     
      Fixtures.getCollection = function(numberOfAlbums) {
