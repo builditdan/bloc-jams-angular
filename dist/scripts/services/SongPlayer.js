@@ -23,7 +23,8 @@
 */
     var playSong = function(song) {
       currentBuzzObject.play();   
-      song.playing = true;   
+      SongPlayer.setVolume(SongPlayer.currentVolume);
+      song.playing = true;  
     }
   
 /**
@@ -74,11 +75,11 @@
 */
     SongPlayer.currentSong = null
 
-  /**
- * @function public setCurrentTime
- * @desc Set current time (in seconds) of currently playing song
- * @param {Number} time
- */
+ /**
+* @function public setCurrentTime
+* @desc Set current time (in seconds) of currently playing song
+* @param {Number} time
+*/
  SongPlayer.setCurrentTime = function(time) {
      if (currentBuzzObject) {
          currentBuzzObject.setTime(time);
@@ -86,10 +87,35 @@
  }; 
     
 /**
- * @desc Current playback time (in seconds) of currently playing song
- * @type {Number}
- */
- SongPlayer.currentTime = null;
+* @desc Current playback time (in seconds) of currently playing song
+* @type {Number}
+*/
+SongPlayer.currentTime = null;
+
+/**
+* @desc Current volume of currently playing song
+* @type {Number}
+*/
+SongPlayer.currentVolume = null;
+
+
+/**
+* @desc Max volume 
+* @type {Number}
+*/
+SongPlayer.maxVolume = 100;
+    
+/**
+* @function public setVolume
+* @desc Set current volume(1 ~ 100) of currently playing song
+* @param {Number} volume
+*/
+SongPlayer.setVolume = function(volume) {
+   if (currentBuzzObject) {
+     currentBuzzObject.setVolume(volume);
+     SongPlayer.currentVolume = volume;
+   }
+}; 
  
     
     
