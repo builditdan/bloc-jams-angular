@@ -1,8 +1,7 @@
 (function() {
   function SongPlayer($rootScope, Fixtures) {
     var SongPlayer = {};
-    
-  
+
 /**
 * @desc Gets the current album from Fixtures 
 * @type {object}
@@ -13,20 +12,20 @@
 * @desc Buzz object audio file
 * @type {Object}
 */
- 
+
     var currentBuzzObject = null;
-  
+
 /**
 * @function private playSong
 * @desc Plays the current song and sets song.playing to true so pause button is shown
 * @param {Object} song
 */
     var playSong = function(song) {
-      currentBuzzObject.play();   
+      currentBuzzObject.play();
       SongPlayer.setVolume(SongPlayer.currentVolume);
-      song.playing = true;  
+      song.playing = true;
     }
-  
+
 /**
 * @function private stopSong
 * @desc Stops the current song and clears the current song that was playing
@@ -34,9 +33,9 @@
 */
     var stopSong = function() {
       currentBuzzObject.stop();
-      SongPlayer.currentSong.playing = null; 
-    }    
-    
+      SongPlayer.currentSong.playing = null;
+    }
+
 /**
 * @function private setSong
 * @desc Stops currently playing song and loads new audio file as currentBuzzObject
@@ -50,17 +49,17 @@
           formats: ['mp3'],
           preload: true
       });
-      
+
       currentBuzzObject.bind('timeupdate', function() {
           $rootScope.$apply(function() {
             SongPlayer.currentTime = currentBuzzObject.getTime();
           });
       });
-      
+
       SongPlayer.currentSong = song;
     };
 
-    
+
 /**
 * @desc Gets the current index of the song
 * @type {Numeric}
@@ -68,7 +67,7 @@
     var getSongIndex = function(song) {
       return currentAlbum.songs.indexOf(song);
     };
-    
+
 /**
 * @desc Current name of the song that is playing
 * @type {String}
@@ -84,8 +83,8 @@
      if (currentBuzzObject) {
          currentBuzzObject.setTime(time);
      }
- }; 
-    
+ };
+
 /**
 * @desc Current playback time (in seconds) of currently playing song
 * @type {Number}
@@ -100,11 +99,11 @@ SongPlayer.currentVolume = null;
 
 
 /**
-* @desc Max volume 
+* @desc Max volume
 * @type {Number}
 */
 SongPlayer.maxVolume = 100;
-    
+
 /**
 * @function public setVolume
 * @desc Set current volume(1 ~ 100) of currently playing song
@@ -115,16 +114,16 @@ SongPlayer.setVolume = function(volume) {
      currentBuzzObject.setVolume(volume);
      SongPlayer.currentVolume = volume;
    }
-}; 
- 
-    
-    
+};
+
+
+
 /**
 * @function public play
 * @desc Plays the current song and sets song.playing to true so pause button is shown
 * @param {Object} song
 */
-    
+
     SongPlayer.play = function(song) {
       song = song || SongPlayer.currentSong;
       if (SongPlayer.currentSong !== song) {
@@ -136,7 +135,7 @@ SongPlayer.setVolume = function(volume) {
         }
       }
     };
-    
+
 /**
 * @function public pause
 * @desc Pauses the current song and sets song.playing to true so pause button is shown
@@ -149,7 +148,7 @@ SongPlayer.setVolume = function(volume) {
       currentBuzzObject.pause();
       song.playing = false;
     };
-    
+
 /**
 * @function public previous
 * @desc Decrements current song index to the previous song, stops at first song
@@ -166,7 +165,7 @@ SongPlayer.setVolume = function(volume) {
          playSong(song);
        }
    };
-    
+
     /**
 * @function public next
 * @desc Increments current song index to the next song, stops at last song
@@ -184,13 +183,13 @@ SongPlayer.setVolume = function(volume) {
          playSong(song);
        }
    };
-  
-        
+
+
    return SongPlayer;
 }
-  
+
   angular
     .module('blocJams')
     .factory('SongPlayer', ['$rootScope', 'Fixtures', SongPlayer]);
-  
+
 })();

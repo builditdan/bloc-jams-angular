@@ -50,7 +50,14 @@ module.exports = function(grunt) {
                     src: [ './**/*.js' ],
                     dest: './dist/scripts',
                     cwd: './app/scripts'
-                }, {
+                },
+                {
+                    expand: true,
+                    src: [ './bootbox.min.js' ],
+                    dest: './dist/scripts/js',
+                    cwd: './node_modules/bootbox'
+                }, 
+                {
                     expand: true,
                     src: [ './**/*.html' ],
                     dest: './dist/templates',
@@ -64,7 +71,7 @@ module.exports = function(grunt) {
                 options: {
                     server: require('path').resolve('./server'),
                     bases: {
-                        "/dist": require('path').resolve('./dist/')
+                        '/dist': require('path').resolve('./dist/')
                     }
                 }
             }
