@@ -4,7 +4,7 @@
   "description": "My bloc jams app using Angular",
   "repository": {
     "type": "git",
-    "url": "https://github.com/builditdan/bloc-chat"
+    "url": "https://github.com/builditdan/bloc-jams-angular"
   },
   "main": "server.js",
   "scripts": {
