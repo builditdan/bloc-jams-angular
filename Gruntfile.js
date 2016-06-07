@@ -6,9 +6,6 @@ module.exports = function(grunt) {
 
     grunt.registerTask( 'run', [ 'hapi', 'watch' ]);
   
-  grunt.registerTask('heroku',
-    ['compass:dist', 'autoprefixer', 'imagemin']);
-
     grunt.initConfig({
 
         watch: {
