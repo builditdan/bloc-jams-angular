@@ -1,7 +1,7 @@
 {
   "name": "bloc-jams-angular",
   "version": "1.0.0",
-  "description": "My bloc jams app using Angular",
+  "description": "My Bloc Jams app using Angular",
   "repository": {
     "type": "git",
     "url": "https://github.com/builditdan/bloc-jams-angular"
